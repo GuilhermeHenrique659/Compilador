@@ -1,6 +1,7 @@
 from error.FileExeception import FileExeception
-from error.LexicalError import LexicalError
+from error.LexicalException import LexicalExeception
 from error.errorHandle import handle_error
+from lexical.LexicalAnalytics import LexicalAnalytics
 from sourceCode import SourceCode
 
 import sys
@@ -11,11 +12,12 @@ def main():
     if len(args) < 1:
         raise FileExeception('not file input')
 
-    sourceCode = SourceCode(args[1])
-    source_code_lines = sourceCode.get_source_code_lines()
-    raise LexicalError('invalid token', 2, source_code_lines[1], sourceCode.get_file_path())
-
-
+    source_code = SourceCode(args[1])
+    lexical = LexicalAnalytics(source_code)
+    tokens = lexical.analytics()
+    for collum in tokens:
+        for line in collum:
+            print(line.getToken())
 
 
 main()
