@@ -15,9 +15,9 @@ def main():
     source_code = SourceCode(args[1])
     lexical = LexicalAnalytics(source_code)
     tokens = lexical.analytics()
-    for collum in tokens:
-        for line in collum:
-            print(line.getToken())
+    for lines in tokens:
+        for token in lines:
+            print(token.getToken())
 
 
 main()

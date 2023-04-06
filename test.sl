@@ -9,9 +9,10 @@ struct stack {
 function main(a: int): int {
     int array[] = [10,23];
     string name = "teste";
-    a = 10;
+    a = 1.5;
     b = a + 1;
 
+    int 10;
     name.len();
 
     compiladores
@@ -19,7 +20,7 @@ function main(a: int): int {
 
     stack.isValid = false;
 
-    for (int i = 0; i < 1; i++) {
+    for (int i = 1; i < 1; i++) {
         if (i == 10 or not i == 1)
         print(array[i]);
         i = i + 1;

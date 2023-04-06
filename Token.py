@@ -12,4 +12,5 @@ class Token:
             'Token': f'<{self.token_type},{self.lex}>'
         }
 
-
+    def __str__(self) -> str:
+        return self.lex

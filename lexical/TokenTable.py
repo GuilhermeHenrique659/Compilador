@@ -2,10 +2,10 @@
 TOKENTABLE = [
     ( None,   r'[ \t\n]+'),
     ( None, r'#[^"]*#<!>'),
-    ( 'INTEGER',  r'-?\d+'),
-    ( 'STRING',  r'"[^"]*"'),
     ( 'FLOAT',  r'-?\d+\.\d+'),
-    ( 'BOOL', r'true|false'),
+    ( 'INTEGER',  r'-?\d+(?![.a-zA-Z])'),
+    ( 'STRING',  r'"[^"]*"'),
+    ( 'BOOL', r'true|false(?![a-zA-Z_])'),
     ( 'INT_TYPE', r'int(?![a-zA-Z_])'),
     ( 'FLOAT_TYPE', r'floa(?![a-zA-Z_])'),
     ( 'BOOL_TYPE', r'bool(?![a-zA-Z_])'),
@@ -36,5 +36,5 @@ TOKENTABLE = [
     ( 'COMPILADORES', r'compiladores(?![a-zA-Z_])'),
     ( 'IFSULDEMINAS', r'IFSULDEMINAS(?![a-zA-Z_])'),
     ( 'FIM', r'fim(?![a-zA-Z_])'),
-    ( 'IDENTIFIER',  r'[a-zA-Z_]\w*'),
+    ( 'IDENTIFIER',  r'[a-zA-Z][a-zA-Z_1-9]*'),
 ]
