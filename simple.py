@@ -9,7 +9,7 @@ import sys
 @handle_error
 def main():
     args = sys.argv
-    if len(args) < 1:
+    if len(args) <= 1:
         raise FileExeception('not file input')
 
     source_code = SourceCode(args[1])
