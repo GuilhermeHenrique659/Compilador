@@ -4,6 +4,7 @@ from error.errorHandle import handle_error
 from lexical.LexicalAnalytics import LexicalAnalytics
 from sourceCode import SourceCode
 
+import os
 import sys
 
 @handle_error
@@ -12,10 +13,11 @@ def main():
     if len(args) <= 1:
         raise FileExeception('not file input')
 
-    source_code = SourceCode(args[1])
+    source_code = SourceCode(os.path.abspath(args[1]))
     lexical = LexicalAnalytics(source_code)
     tokens = lexical.analytics()
-    for lines in tokens:
+    source_code.source_code_tokenize = tokens
+    for lines in source_code.source_code_tokenize:
         for token in lines:
             print(token.getToken())
 
