@@ -5,7 +5,7 @@ from typing import List
 from error.FileExeception import FileExeception
 from Token import Token
 
-pathToSearchRegex = re.compile('[a-zA-Z0-9:_.\\\/]*/[a-zA-Z][a-zA-Z0-9_.]*.sl')
+pathToSearchRegex = re.compile('[a-zA-Z0-9:_.\\\/]*[a-zA-Z][a-zA-Z0-9_.]*.sl')
 
 class SourceCode:
     __filepath: str
@@ -28,7 +28,6 @@ class SourceCode:
         if not(self.__source_code_raw):
             self.__validate_source_code()
             self.__source_code_raw = open(self.__filepath)
-        print(self.__filepath)
         return self.__source_code_raw.readlines()
 
 
