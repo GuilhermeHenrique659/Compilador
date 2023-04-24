@@ -1,5 +1,1 @@
-
-function main(): void {
-    int a[]
-    print("hello word")
-}
+adsadsadsadsadsadsadsad = 10
