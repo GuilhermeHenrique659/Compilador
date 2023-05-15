@@ -2,8 +2,8 @@
 TOKENTABLE = [
     ( None,   r'[ \t\n]+'),
     ( None, r'#[^"]*#<!>'),
-    ( 'FLOAT',  r'-?\d\\{0,12}\.\d\\{0,20}(?![a-zA-Z])'),
-    ( 'INTEGER',  r'-?\d\\{0,12}(?![a-zA-Z])'),
+    ( 'FLOAT',  r'-?\d+\\{0,12}\.\d+\\{0,20}(?![a-zA-Z])'),
+    ( 'INTEGER',  r'-?\d+\\{0,12}(?![a-zA-Z])'),
     ( 'STRING',  r'"[^"]*"'),
     ( 'BOOL', r'true|false(?![a-zA-Z_])'),
     ( 'INT_TYPE', r'int(?![a-zA-Z_])'),

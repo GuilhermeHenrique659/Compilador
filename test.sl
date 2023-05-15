@@ -1,1 +1,1 @@
-adsadsadsadsadsadsadsad = 10
+int a = 10
