@@ -2,7 +2,7 @@ from typing import List
 from Token import Token
 
 def inject_token_position(tokens: List[List[Token]]):
-    GRAMMAR_SPACE = 1
+    GRAMMAR_SPACE = 0
     pos = 0
     for line in tokens:
         for token in line:
