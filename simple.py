@@ -1,6 +1,6 @@
 from error.FileExeception import FileExeception
-from error.LexicalException import LexicalExeception
 from error.errorHandle import handle_error
+from helpers.InjectTokenPosition import inject_token_position
 from lexical.LexicalAnalytics import LexicalAnalytics
 from sourceCode import SourceCode
 
@@ -17,9 +17,11 @@ def main():
     lexical = LexicalAnalytics(source_code)
     tokens = lexical.analytics()
     source_code.source_code_tokenize = tokens
+    inject_token_position(tokens)
     for lines in source_code.source_code_tokenize:
         for token in lines:
-            print(token.getToken())
+            print(token.get_token())
+
 
 
 main()

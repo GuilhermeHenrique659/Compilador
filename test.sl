@@ -1,1 +1,3 @@
-int a = 10
+function main () {
+   int a = 10 + 1;
+}
