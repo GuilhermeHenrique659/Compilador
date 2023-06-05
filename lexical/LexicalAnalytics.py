@@ -24,7 +24,7 @@ class LexicalAnalytics:
                         tokens.append(Token(lineIndex, collunm, token_type, value))
                     break
             if not match:
-                raise LexicalExeception('invalid token', lineIndex+1, source_code_line, self.__source_code.get_file_path(), collunm)
+                raise LexicalExeception(lineIndex, source_code_line, self.__source_code.get_file_path(), collunm)
             collunm = match.end()
         return tokens
 

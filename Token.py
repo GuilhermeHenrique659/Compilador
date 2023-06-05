@@ -19,7 +19,8 @@ class Token:
         return {
             'Line': self.line,
             'Collunm': self.collunm,
-            'Token': f'<{self.token_type},{self.lex}>'
+            'Token': f'<{self.token_type},{self.lex}>',
+            'pos': self.pos
         }
 
     def __str__(self) -> str:

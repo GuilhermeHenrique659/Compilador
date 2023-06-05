@@ -12,8 +12,8 @@ class SourceCode:
     __source_code_raw: str
     source_code_tokenize: List[List[Token]]
 
-    def __init__(self, soruceCodeFile: str) -> None:
-        self.__filepath = soruceCodeFile
+    def __init__(self, sourceCodeFile: str) -> None:
+        self.__filepath = sourceCodeFile
         self.__source_code_raw = None
         self.source_code_tokenize = None
 
@@ -27,8 +27,8 @@ class SourceCode:
     def get_source_code_lines(self):
         if not(self.__source_code_raw):
             self.__validate_source_code()
-            self.__source_code_raw = open(self.__filepath)
-        return self.__source_code_raw.readlines()
+            self.__source_code_raw = open(self.__filepath).readlines()
+        return self.__source_code_raw
 
 
 

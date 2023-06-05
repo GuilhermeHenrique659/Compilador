@@ -1,0 +1,9 @@
+start: program
+program: function_decl
+function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
+statement: variable_decl | assignment
+variable_decl: "INT_TYPE" "IDENTIFIER" "ATRIBUTION" "INTEGER" "LINE_BREAK"
+assignment: "IDENTIFIER" "ATRIBUTION" expr "LINE_BREAK"
+expr: term (("+" | "-") term)*
+term: factor (("*" | "/") factor)*
+factor: "INTEGER" | "IDENTIFIER" | "(" expr ")"

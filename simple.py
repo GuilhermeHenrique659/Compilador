@@ -24,8 +24,9 @@ def main():
     for lines in source_code.source_code_tokenize:
         for token in lines:
             r.append(token)
-    res = SyntaticAnalytics().gerar_arvore_derivacao(r)
-    print(res.get_data())
+    syntatic = SyntaticAnalytics(source_code)
+    syntatic.analytics()
+
 
 
 
