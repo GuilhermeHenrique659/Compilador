@@ -14,12 +14,10 @@ class SyntaticAnalytics:
         self.__tokens = []
 
     def __get_token_list(self):
-        for token in self.__source_code.source_code_tokenize:
-            self.__tokens.extend(token)
+        list(map(lambda token: self.__tokens.extend(token), self.__source_code.source_code_tokenize))
 
     def get_grammar(self) -> str:
-        path = './grammar.txt'
-        return open(path).read()
+        return open('./grammar.txt').read()
 
     def get_error_token(self, column) -> Token:
         tokens_position = list(map(lambda token: token.pos, self.__tokens))

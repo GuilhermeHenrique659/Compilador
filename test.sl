@@ -1,3 +1,3 @@
-function main (var){ 
+function main (){ 
    a = 10;
 }
