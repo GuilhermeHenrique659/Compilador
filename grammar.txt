@@ -6,4 +6,4 @@ variable_decl: "INT_TYPE" "IDENTIFIER" "ATRIBUTION" "INTEGER" "LINE_BREAK"
 assignment: "IDENTIFIER" "ATRIBUTION" expr "LINE_BREAK"
 expr: term (("+" | "-") term)*
 term: factor (("*" | "/") factor)*
-factor: "INTEGER" | "IDENTIFIER" | "(" expr ")"
+factor: "INTEGER" | "IDENTIFIER" | "OPEN_PARAN" expr "CLOSE_PARAN"

@@ -20,10 +20,6 @@ def main():
     tokens = lexical.analytics()
     source_code.source_code_tokenize = tokens
     inject_token_position(tokens)
-    r = []
-    for lines in source_code.source_code_tokenize:
-        for token in lines:
-            r.append(token)
     syntatic = SyntaticAnalytics(source_code)
     syntatic.analytics()
 

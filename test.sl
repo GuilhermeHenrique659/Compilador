@@ -1,3 +1,3 @@
-function main () {
-   int a 10 = 
+function main (var){ 
+   a = 10;
 }
