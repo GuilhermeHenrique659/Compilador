@@ -1,3 +1,4 @@
-function main (){ 
-   a = 10;
+function main (): void { 
+   string res = "tes";
+   res = "s";
 }

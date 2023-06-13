@@ -1,9 +1,14 @@
 start: program
 program: function_decl
-function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
-statement: variable_decl | assignment
-variable_decl: "INT_TYPE" "IDENTIFIER" "ATRIBUTION" "INTEGER" "LINE_BREAK"
-assignment: "IDENTIFIER" "ATRIBUTION" expr "LINE_BREAK"
+function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" "CLOSE_PARAN" "ATRIBUTE_TYPE" function_type "OPEN_BRACE" statement* "CLOSE_BRACE"
+function_type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE"
+statement: variable_decl | assignment | "assignment_number"
+variable_decl: int_var_decl | str_var_decl 
+int_var_decl: "INT_TYPE" "IDENTIFIER" "ATRIBUTION" "INTEGER" "LINE_BREAK"
+str_var_decl: "STRING_TYPE" "IDENTIFIER" "ATRIBUTION" "STRING" "LINE_BREAK"
+assignment_number: "IDENTIFIER" "ATRIBUTION" expr "LINE_BREAK"
+val: "INTEGER" | "FLOAT" | "STRING" | "BOOL"
+assignment: "IDENTIFIER" "ATRIBUTION" val "LINE_BREAK"
 expr: term (("+" | "-") term)*
 term: factor (("*" | "/") factor)*
-factor: "INTEGER" | "IDENTIFIER" | "OPEN_PARAN" expr "CLOSE_PARAN"
+factor: "INTEGER" | "IDENTIFIER" | "FLOAT" "OPEN_PARAN" expr "CLOSE_PARAN"
