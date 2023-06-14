@@ -1,14 +1,22 @@
 start: program
-program: function_decl
-function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" "CLOSE_PARAN" "ATRIBUTE_TYPE" function_type "OPEN_BRACE" statement* "CLOSE_BRACE"
-function_type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE"
-statement: variable_decl | assignment | "assignment_number"
-variable_decl: int_var_decl | str_var_decl 
-int_var_decl: "INT_TYPE" "IDENTIFIER" "ATRIBUTION" "INTEGER" "LINE_BREAK"
-str_var_decl: "STRING_TYPE" "IDENTIFIER" "ATRIBUTION" "STRING" "LINE_BREAK"
-assignment_number: "IDENTIFIER" "ATRIBUTION" expr "LINE_BREAK"
+program: function_decl*
+
+function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" params* "CLOSE_PARAN" "ATRIBUTE_TYPE" type "OPEN_BRACE" statement* "CLOSE_BRACE"
+function_call: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN"
+
+params: "IDENTIFIER" "ATRIBUTE_TYPE" type | "IDENTIFIER" "ATRIBUTE_TYPE" type "COMMA"
+params_call: ("IDENTIFIER" | val) | ("IDENTIFIER" | val) "COMMA"
+
+type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE"
 val: "INTEGER" | "FLOAT" | "STRING" | "BOOL"
-assignment: "IDENTIFIER" "ATRIBUTION" val "LINE_BREAK"
+
+statement: variable_decl | assignment | return
+return: "RETURN" "IDENTIFIER" "LINE_BREAK" 
+
+variable_decl: type "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK" 
+assignment: "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK"
+assignment_val: function_call | expr
+
 expr: term (("+" | "-") term)*
 term: factor (("*" | "/") factor)*
-factor: "INTEGER" | "IDENTIFIER" | "FLOAT" "OPEN_PARAN" expr "CLOSE_PARAN"
+factor: ("IDENTIFIER" | val) | ( "OPEN_PARAN" expr "CLOSE_PARAN")

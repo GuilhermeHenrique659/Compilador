@@ -36,6 +36,7 @@ class SyntaticAnalytics:
             print(tree.pretty())
             return tree
         except ParseError as e:
+            print(e)
             token = self.get_error_token(e.column)
             expected = get_token_value(list(e.expected))
             raise SyntaticExeception(token.line, f'\n after: {token.lex} expected {expected}', self.__source_code.get_file_path(), token.collunm)
