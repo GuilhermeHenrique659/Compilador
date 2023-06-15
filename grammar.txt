@@ -2,7 +2,8 @@ start: program
 program: function_decl*
 
 function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" params* "CLOSE_PARAN" "ATRIBUTE_TYPE" type "OPEN_BRACE" statement* "CLOSE_BRACE"
-function_call: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN"
+function_call_attr: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN"
+function_call: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN" "LINE_BREAK"
 
 params: "IDENTIFIER" "ATRIBUTE_TYPE" type | "IDENTIFIER" "ATRIBUTE_TYPE" type "COMMA"
 params_call: ("IDENTIFIER" | val) | ("IDENTIFIER" | val) "COMMA"
@@ -10,12 +11,19 @@ params_call: ("IDENTIFIER" | val) | ("IDENTIFIER" | val) "COMMA"
 type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE"
 val: "INTEGER" | "FLOAT" | "STRING" | "BOOL"
 
-statement: variable_decl | assignment | return
+statement: variable_decl | assignment | function_call | compare |return 
 return: "RETURN" "IDENTIFIER" "LINE_BREAK" 
+
+compare: if | (if else) | (if else_if*) | (if else_if* else)
+
+relation: ((val | "IDENTIFIER" | function_call_attr) "RELATION_OPERATOR" (val | "IDENTIFIER" | function_call_attr)) | (val | "IDENTIFIER" | function_call_attr)
+if: "IF" "OPEN_PARAN" relation "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
+else_if: "ELSE" "IF" "OPEN_PARAN" relation "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
+else: "ELSE" "OPEN_BRACE" statement* "CLOSE_BRACE"
 
 variable_decl: type "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK" 
 assignment: "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK"
-assignment_val: function_call | expr
+assignment_val: function_call_attr | expr
 
 expr: term (("+" | "-") term)*
 term: factor (("*" | "/") factor)*
