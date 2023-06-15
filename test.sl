@@ -1,4 +1,23 @@
+struct node {
+   data: string;
+   next: node;
+}
+
+
 function main (): void { 
+   int[] array = [1, 2];
+
+   array[0];
+
+   while(array[i] > 0) {
+         print(array[i]);
+   }   
+
+   for (int i = 0; i < 2; i = i + 1 ) {
+
+   }
+
+
    string res = "tes";
    res = "s";
    int a = 0;

@@ -1,5 +1,11 @@
 start: program
-program: function_decl*
+program: (function_decl* | struct*) | (struct* function_decl*) |  (function_decl* struct*)
+
+struct: "STRUCT" "IDENTIFIER" "OPEN_BRACE" struct_statement+ "CLOSE_BRACE"
+struct_statement: "IDENTIFIER" "ATRIBUTE_TYPE" type "LINE_BREAK"
+
+statement: variable_decl | assignment | function_call | compare | return | (array_acess "LINE_BREAK") | iter
+
 
 function_decl: "FUNCTION" "IDENTIFIER" "OPEN_PARAN" params* "CLOSE_PARAN" "ATRIBUTE_TYPE" type "OPEN_BRACE" statement* "CLOSE_BRACE"
 function_call_attr: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN"
@@ -8,18 +14,28 @@ function_call: "IDENTIFIER" "OPEN_PARAN" params_call* "CLOSE_PARAN" "LINE_BREAK"
 params: "IDENTIFIER" "ATRIBUTE_TYPE" type | "IDENTIFIER" "ATRIBUTE_TYPE" type "COMMA"
 params_call: ("IDENTIFIER" | val) | ("IDENTIFIER" | val) "COMMA"
 
-type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE"
-val: "INTEGER" | "FLOAT" | "STRING" | "BOOL"
+type: "INT_TYPE" | "FLOAT_TYPE" | "BOOL_TYPE" | "STRING_TYPE" | "VOID_TYPE" | "IDENTIFIER" | (type "ARRAY_TYPE") 
+val: "INTEGER" | "FLOAT" | "STRING" | "BOOL" | array_val | array_acess
+ 
+array_val: "OPEN_BRACKET" ((val | "IDENTIFIER") | (val | "IDENTIFIER") "COMMA")* "CLOSE_BRACKET"
+array_acess: "IDENTIFIER" "OPEN_BRACKET" ("IDENTIFIER" | "INTEGER") "CLOSE_BRACKET"
 
-statement: variable_decl | assignment | function_call | compare |return 
+
 return: "RETURN" "IDENTIFIER" "LINE_BREAK" 
 
 compare: if | (if else) | (if else_if*) | (if else_if* else)
 
-relation: ((val | "IDENTIFIER" | function_call_attr) "RELATION_OPERATOR" (val | "IDENTIFIER" | function_call_attr)) | (val | "IDENTIFIER" | function_call_attr)
+relation_and_logic: "LOGIC_OPERATOR" | "RELATION_OPERATOR"
+relation: ((val | "IDENTIFIER" | function_call_attr) relation_and_logic (val | "IDENTIFIER" | function_call_attr)) | (val | "IDENTIFIER" | function_call_attr)
 if: "IF" "OPEN_PARAN" relation "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
 else_if: "ELSE" "IF" "OPEN_PARAN" relation "CLOSE_PARAN" "OPEN_BRACE" statement* "CLOSE_BRACE"
 else: "ELSE" "OPEN_BRACE" statement* "CLOSE_BRACE"
+
+iter: (for | while) "OPEN_BRACE" statement* "CLOSE_BRACE"
+for: "FOR" "OPEN_PARAN" for_param "CLOSE_PARAN"
+for_param: (variable_decl | assignment) "IDENTIFIER" "RELATION_OPERATOR" ("IDENTIFIER" | "INTEGER") "LINE_BREAK" "IDENTIFIER" "ATRIBUTION" expr
+
+while: "WHILE" "OPEN_PARAN" relation "CLOSE_PARAN"
 
 variable_decl: type "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK" 
 assignment: "IDENTIFIER" "ATRIBUTION" assignment_val "LINE_BREAK"

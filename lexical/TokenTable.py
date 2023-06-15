@@ -11,7 +11,7 @@ TOKENTABLE = [
     ( 'BOOL_TYPE', r'bool(?![a-zA-Z_])'),
     ( 'STRING_TYPE', r'string(?![a-zA-Z_])'),
     ( 'VOID_TYPE', r'void(?![a-zA-Z_])'),
-    ( 'ARRAY_TYPE', r'(\[\]|Array)'),
+    ( 'ARRAY_TYPE', r'(\[\])'),
     ( 'BASIC_MATH_OPERATOR',  r'[+\-*/]'),
     ( 'RELATION_OPERATOR', r'(==|!=|<=|>=|<|>)'),
     ( 'LOGIC_OPERATOR', r'(or|and|not)'),
