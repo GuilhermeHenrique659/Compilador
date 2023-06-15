@@ -30,7 +30,9 @@ class LexicalAnalytics:
 
     def analytics(self) -> List[List[Token]]:
         lines = self.__source_code.get_source_code_lines()
-        return list(map(self.__line_analytics, lines, range(len(lines))))
+        tokens = list(map(self.__line_analytics, lines, range(len(lines))))
+        self.__source_code.set_source_code_tokenize(tokens)
+
 
 
 

@@ -16,12 +16,9 @@ def main():
         raise FileExeception('not file input')
 
     source_code = SourceCode(os.path.abspath(args[1]))
-    lexical = LexicalAnalytics(source_code)
-    tokens = lexical.analytics()
-    source_code.source_code_tokenize = tokens
-    inject_token_position(tokens)
-    syntatic = SyntaticAnalytics(source_code)
-    syntatic.analytics()
+    LexicalAnalytics(source_code).analytics()
+    SyntaticAnalytics(source_code).analytics()
+
 
 
 
