@@ -1,16 +1,17 @@
 from lark import Lark
 from lark.exceptions import ParseError
 from typing import List
+from Analytics import AbstractAnalytics
 from Token import Token
 from error.SyntaticExeception import SyntaticExeception
 from helpers.getTokenValue import get_token_value
 from sourceCode import SourceCode
 
-class SyntaticAnalytics:
+class SyntaticAnalytics(AbstractAnalytics):
     __tokens: List[Token]
 
-    def __init__(self, sourceCode: SourceCode) -> None:
-        self.__source_code = sourceCode
+    def __init__(self, source_code: SourceCode) -> None:
+        self.__source_code = source_code
         self.__tokens = []
 
     def __get_token_list(self):
@@ -34,7 +35,7 @@ class SyntaticAnalytics:
         try:
             tree = parser.parse(code)
             print(tree.pretty())
-            return tree
+            self.__source_code.set_source_code_tree(tree)
         except ParseError as e:
             print(e)
             token = self.get_error_token(e.column)

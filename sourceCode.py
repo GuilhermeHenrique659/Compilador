@@ -1,6 +1,7 @@
 
 import os
 import re
+from lark import Tree
 from typing import List
 from error.FileExeception import FileExeception
 from Token import Token
@@ -12,18 +13,27 @@ class SourceCode:
     __filepath: str
     __source_code_raw: str
     __source_code_tokenize: List[List[Token]]
+    __source_code_tree: Tree
 
-    def __init__(self, sourceCodeFile: str) -> None:
-        self.__filepath = sourceCodeFile
+    def __init__(self, source_code_file: str) -> None:
+        self.__filepath = source_code_file
         self.__source_code_raw = None
         self.__source_code_tokenize = None
+        self.__source_code_tree = None
 
     @property
     def source_code_tokenize(self):
         return self.__source_code_tokenize
 
+    @property
+    def source_code_tree(self):
+        return self.__source_code_tree
+
     def get_file_path(self):
         return self.__filepath
+    
+    def set_source_code_tree(self, tree: Tree):
+        self.__source_code_tree = tree
     
     def set_source_code_tokenize(self, tokens: List[List[Token]]):
         inject_token_position(tokens)

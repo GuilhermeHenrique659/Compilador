@@ -1,3 +1,4 @@
+from Analytics import AbstractAnalytics
 from error.LexicalException import LexicalExeception
 from lexical.TokenTable import TOKENTABLE
 from sourceCode import SourceCode
@@ -7,11 +8,11 @@ from typing import List
 import re
 
 
-class LexicalAnalytics:
-    def __init__(self, sourceCode: SourceCode) -> None:
-        self.__source_code = sourceCode
+class LexicalAnalytics(AbstractAnalytics):
+    def __init__(self, source_code: SourceCode) -> None:
+        self.__source_code = source_code
 
-    def __line_analytics(self, source_code_line: str, lineIndex: str) -> List[Token]:
+    def __line_analytics(self, source_code_line: str, line_index: str) -> List[Token]:
         tokens: List[Token] = []
         collunm = 0
         while collunm < len(source_code_line):
@@ -21,10 +22,10 @@ class LexicalAnalytics:
                 if match:
                     value = match.group()
                     if token_type:
-                        tokens.append(Token(lineIndex, collunm, token_type, value))
+                        tokens.append(Token(line_index, collunm, token_type, value))
                     break
             if not match:
-                raise LexicalExeception(lineIndex, source_code_line, self.__source_code.get_file_path(), collunm)
+                raise LexicalExeception(line_index, source_code_line, self.__source_code.get_file_path(), collunm)
             collunm = match.end()
         return tokens
 
