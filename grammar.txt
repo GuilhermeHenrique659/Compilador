@@ -1,4 +1,4 @@
-start: program
+start: "INICIO" "COMPILADORES" "IFSULDEMINAS" program "FIM"
 
 program: (function_decl* | struct*) 
   | (struct* function_decl*) 

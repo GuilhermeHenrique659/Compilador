@@ -1,3 +1,7 @@
+inicio
+compiladores
+IFSULDEMINAS
+
 struct node {
    data: string;
    next: node;
@@ -39,3 +43,5 @@ function sum(x: int, y: int): int {
    int sum = x + y;
    return x;
 }
+
+fim
