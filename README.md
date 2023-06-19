@@ -18,9 +18,3 @@ Para rodar basta ter o python.
 
   python simple.py paht/<filename>.sl
 ```
-
-  
-<code>python simple.py <caminho do arquivo .sl></code>
-
-## Exemplo:
-<code>python simple.py test.sl</code>
